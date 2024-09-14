@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quadratic Equations Lesson</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1, h2 {
+            color: #2c3e50;
+        }
+        .question {
+            margin-bottom: 25px;
+        }
+        .question input {
+            margin-top: 10px;
+            padding: 5px;
+            width: 300px;
+        }
+        .question button {
+            margin-left: 10px;
+            padding: 5px 10px;
+        }
+        .feedback {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        .correct {
+            color: green;
+        }
+        .incorrect {
+            color: red;
+        }
+        iframe {
+            margin: 20px 0;
+            max-width: 100%;
+        }
+    </style>
+    <script>
+        function checkAnswer(id, correctAnswers, isSignificantFigures = false) {
+            const userAnswer = document.getElementById('input' + id).value.replace(/\s+/g, '');
+            const feedback = document.getElementById('feedback' + id);
+            let isCorrect = false;
+
+            if (isSignificantFigures) {
+                const userAnswers = userAnswer.split(',');
+                isCorrect = userAnswers.every(ans => correctAnswers.some(corr => Math.abs(parseFloat(ans) - corr) < 0.005));
+            } else {
+                isCorrect = correctAnswers.includes(userAnswer);
+            }
+
+            if (isCorrect) {
+                feedback.textContent = 'Correct!';
+                feedback.className = 'feedback correct';
+            } else {
+                feedback.textContent = 'Incorrect, try again.';
+                feedback.className = 'feedback incorrect';
+            }
+        }
+    </script>
+</head>
+<body>
+
+<h1>Quadratic Equations</h1>
+
+<h2>1. Definition</h2>
+<p>A <strong>quadratic equation</strong> is a second-order polynomial equation in a single variable <em>x</em>, with a standard form:</p>
+<p style="text-align: center;"><strong>ax<sup>2</sup> + bx + c = 0</strong></p>
+<p>Where:</p>
+<ul>
+    <li><strong>x</strong> is the variable.</li>
+    <li><strong>a</strong>, <strong>b</strong>, and <strong>c</strong> are constants, with <strong>a ≠ 0</strong>.</li>
+</ul>
+
+<h2>2. Number of Solutions</h2>
+<p>When solving quadratic equations, we generally find two solutions because of the squared term. However, depending on the discriminant (the part under the square root in the quadratic formula), we might have one real solution or no real solutions.</p>
+
+<h2>3. Methods of Solving Quadratic Equations</h2>
+<ol>
+    <li><strong>Sum/Product Rule:</strong> Factoring the quadratic equation into two binomials.</li>
+    <li><strong>Quadratic Formula:</strong> Using the formula \( x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} \).</li>
+    <li><strong>Completing the Square:</strong> Rewriting the equation to form a perfect square trinomial.</li>
+</ol>
+
+<h2>Sum/Product Rule</h2>
+<!-- Embedded YouTube Video -->
+<iframe width="560" height="315" src="https://www.youtube.com/embed/esa42AW5pUM" frameborder="0" allowfullscreen></iframe>
+
+<h2>Practice Questions</h2>
+
+<div class="question">
+    <p><strong>1.</strong> Solve the equation: \( x^2 - 5x + 6 = 0 \)</p>
+    <input type="text" id="input1" placeholder="Enter solutions separated by a comma">
+    <button onclick="checkAnswer(1, ['2,3', '3,2'])">Check Answer</button>
+    <div id="feedback1" class="feedback"></div>
+</div>
+
+<div class="question">
+    <p><strong>2.</strong> Solve the equation: \( x^2 - x - 12 = 0 \)</p>
+    <input type="text" id="input2" placeholder="Enter solutions separated by a comma">
+    <button onclick="checkAnswer(2, ['4,-3', '-3,4'])">Check Answer</button>
+    <div id="feedback2" class="feedback"></div>
+</div>
+
+<div class="question">
+    <p><strong>3.</strong> Solve the equation: \( 2x^2 - 7x + 3 = 0 \)</p>
+    <input type="text" id="input3" placeholder="Enter solutions separated by a comma">
+    <button onclick="checkAnswer(3, ['3,0.5', '0.5,3'])">Check Answer</button>
+    <div id="feedback3" class="feedback"></div>
+</div>
+
+<div class="question">
+    <p><strong>4.</strong> Solve the equation: \( 3x^2 - 2x - 8 = 0 \)</p>
+    <input type="text" id="input4" placeholder="Enter solutions separated by a comma">
+    <button onclick="checkAnswer(4, ['2,-1.333333333', '-1.333333333,2'])">Check Answer</button>
+    <div id="feedback4" class="feedback"></div>
+</div>
+
+<h2>Quadratic Formula</h2>
+<!-- Embedded YouTube Video -->
+<iframe width="560" height="315" src="https://www.youtube.com/embed/1QVCPsgNDMk" frameborder="0" allowfullscreen></iframe>
+
+<h2>Practice Questions</h2>
+<p><em>Note: Give your answers to 3 significant figures.</em></p>
+
+<div class="question">
+    <p><strong>1.</strong> Solve the equation: \( x^2 - 2x + 1 = 0 \)</p>
+    <input type="text" id="input5" placeholder="Enter solution">
+    <button onclick="checkAnswer(5, ['1.00'])">Check Answer</button>
+    <div id="feedback5" class="feedback"></div>
+</div>
+
+<div class="question">
+    <p><strong>2.</strong> Solve the equation: \( x^2 - x - 1 = 0 \)</p>
+    <input type="text" id="input6" placeholder="Enter solutions separated by a comma">
+    <button onclick="checkAnswer(6, ['1.62,-0.618', '-0.618,1.62'], true)">Check Answer</button>
+    <div id="feedback6" class="feedback"></div>
+</div>
+
+<div class="question">
+    <p><strong>3.</strong> Solve the equation: \( 2x^2 - 4x + 3 = 0 \)</p>
+    <input type="text" id="input7" placeholder="Enter solutions separated by a comma">
+    <button onclick="checkAnswer(7, ['1.85,0.815', '0.815,1.85'], true)">Check Answer</button>
+    <div id="feedback7" class="feedback"></div>
+</div>
+
+<h2>Completing the Square</h2>
+<!-- Embedded YouTube Video -->
+<iframe width="560" height="315" src="https://www.youtube.com/embed/nYnWZmpJ9nI" frameborder="0" allowfullscreen></iframe>
+
+<h2>Practice Questions</h2>
+
+<div class="question">
+    <p><strong>1.</strong> Solve the equation: \( x^2 + 4x + 4 = 0 \)</p>
+    <input type="text" id="input8" placeholder="Enter solution">
+    <button onclick="checkAnswer(8, ['-2'])">Check Answer</button>
+    <div id="feedback8" class="feedback"></div>
+</div>
+
+<div class="question">
+    <p><strong>2.</strong> Solve the equation: \( x^2 + 6x + 10 = 0 \)</p>
+    <input type="text" id="input9" placeholder="Enter solutions (may be complex)">
+    <button onclick="checkAnswer(9, ['-3+1i', '-3-1i'])">Check Answer</button>
+    <div id="feedback9" class="feedback"></div>
+</div>
+
+<div class="question">
+    <p><strong>3.</strong> Solve the equation: \( x^2 - 4x + 7 = 0 \)</p>
+    <input type="text" id="input10" placeholder="Enter solutions (may be complex)">
+    <button onclick="checkAnswer(10, ['2+√3i', '2-√3i'])">Check Answer</button>
+    <div id="feedback10" class="feedback"></div>
+</div>
+
+<div class="question">
+    <p><strong>4.</strong> Solve the equation: \( x^2 + 1 = 0 \)</p>
+    <input type="text" id="input11" placeholder="Enter solutions (may be complex)">
+    <button onclick="checkAnswer(11, ['i', '-i'])">Check Answer</button>
+    <div id="feedback11" class="feedback"></div>
+</div>
+
+</body>
+</html>
